@@ -1,0 +1,4 @@
+com\example\newsapi\dto\NewsArticleRequest.class
+com\example\newsapi\entity\NewsArticle.class
+com\example\newsapi\NewsApiApplication.class
+com\example\newsapi\dto\NewsArticleResponse.class

@@ -1,0 +1,11 @@
+# Task ID: 7
+# Title: Implement Delete Article Endpoint (DELETE /api/v1/news/{id})
+# Status: pending
+# Dependencies: 1
+# Priority: medium
+# Description: Create the API endpoint to remove a news article from the system.
+# Details:
+Implement a method in `NewsArticleController` mapped to `DELETE /api/v1/news/{id}`. The service should find the article by its ID and delete it. A successful deletion should return a `204 No Content` status. If the article to be deleted is not found, it should result in a 404 status.
+
+# Test Strategy:
+Create an article, send a DELETE request with its ID, and assert the response status is 204. Attempt to GET the same ID and assert a 404 is returned. Test deleting a non-existent ID to ensure a 404 is returned.

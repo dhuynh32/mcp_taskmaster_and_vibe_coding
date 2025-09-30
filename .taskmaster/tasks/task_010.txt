@@ -1,0 +1,43 @@
+# Task ID: 10
+# Title: Implement Unit and Integration Tests
+# Status: pending
+# Dependencies: 2, 3, 5, 6, 7, 8
+# Priority: medium
+# Description: Write a comprehensive suite of unit and integration tests for the service and controller layers to ensure functionality and robustness.
+# Details:
+For the service layer (`NewsArticleService`), write unit tests using Mockito to mock the repository and verify the business logic. For the controller layer (`NewsArticleController`), write integration tests using `@SpringBootTest` and `MockMvc` to test the full HTTP request-response cycle for all CRUD endpoints, including pagination and error handling.
+
+# Test Strategy:
+Run the full test suite using Maven (`mvn test`). Ensure all tests pass and achieve a reasonable code coverage percentage. The tests themselves are the validation for this task.
+
+# Subtasks:
+## 1. Design and Implement User Authentication Database Schema [pending]
+### Dependencies: None
+### Description: Create the necessary database tables to store user information, including credentials, profiles, and session tokens.
+### Details:
+Create a `users` table with columns like `id`, `email` (unique), `password_hash`, `created_at`. Create a `sessions` table for managing user login sessions with `id`, `user_id` (foreign key), `token`, and `expires_at`. Use a database migration tool to apply the schema.
+
+## 2. Develop User Registration API Endpoint [pending]
+### Dependencies: None
+### Description: Create a public API endpoint (e.g., `POST /api/auth/register`) that allows new users to create an account.
+### Details:
+The endpoint should accept `email` and `password`. It must validate the input (e.g., password strength, valid email format). Hash the password using a strong algorithm like bcrypt before storing it in the `users` table. Return a success message or an appropriate error (e.g., 409 Conflict for existing email).
+
+## 3. Develop User Login API Endpoint [pending]
+### Dependencies: None
+### Description: Create a public API endpoint (e.g., `POST /api/auth/login`) for users to authenticate and receive a session token.
+### Details:
+The endpoint should accept `email` and `password`. It will find the user by email, retrieve the stored password hash, and compare it with the provided password. If valid, generate a secure session token (e.g., JWT), store it in the `sessions` table, and return it to the client.
+
+## 4. Implement Authentication Middleware for Protected Routes [pending]
+### Dependencies: None
+### Description: Create a middleware that intercepts requests to protected API endpoints, validates the session token, and attaches the authenticated user's information to the request object.
+### Details:
+The middleware should extract the session token from the `Authorization` header. It will then look up the token in the `sessions` table, check if it's valid and not expired, and retrieve the associated user. If valid, pass the request to the next handler. If invalid, return a 401 Unauthorized error.
+
+## 5. Develop User Logout API Endpoint [pending]
+### Dependencies: None
+### Description: Create a protected API endpoint (e.g., `POST /api/auth/logout`) that invalidates the user's current session token.
+### Details:
+This endpoint must be protected by the authentication middleware. It should identify the session token used for authentication and delete the corresponding record from the `sessions` table in the database, effectively invalidating the session.
+

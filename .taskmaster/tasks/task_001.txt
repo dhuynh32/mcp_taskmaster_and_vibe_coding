@@ -1,0 +1,43 @@
+# Task ID: 1
+# Title: Configure MySQL Database and Enhance NewsArticle Entity
+# Status: pending
+# Dependencies: None
+# Priority: high
+# Description: Update the project configuration to connect to a MySQL database as required by the PRD, and update the NewsArticle data model to include all specified fields.
+# Details:
+The current implementation uses an in-memory H2 database and an incomplete NewsArticle model. This task involves adding the MySQL dependency, updating application.properties with the correct datasource configuration, and modifying the NewsArticle.java entity to include fields: `author`, `publicationDate`, `createdAt`, `updatedAt`. The `id` should be changed to UUID, and `@CreationTimestamp`/`@UpdateTimestamp` annotations should be used for automatic timestamping.
+
+# Test Strategy:
+Verify the application starts successfully and connects to the MySQL database. Inspect the database schema after startup to confirm the 'news_article' table is created with all the correct columns and data types.
+
+# Subtasks:
+## 1. Update Maven Dependencies for MySQL [pending]
+### Dependencies: None
+### Description: Modify the `pom.xml` file to include the MySQL database driver and remove the H2 in-memory database dependency.
+### Details:
+In the `pom.xml` file, locate the `<dependencies>` section. Remove the dependency block for `com.h2database:h2`. Add a new dependency for the MySQL connector: `mysql:mysql-connector-java` or the newer `com.mysql:mysql-connector-j`.
+
+## 2. Configure MySQL Datasource in application.properties [pending]
+### Dependencies: 1.1
+### Description: Update the `application.properties` file to switch from the H2 configuration to the new MySQL database connection details.
+### Details:
+In `src/main/resources/application.properties`, remove or comment out the existing H2 properties (`spring.datasource.url=jdbc:h2:mem:testdb`, `spring.h2.console.enabled=true`, etc.). Add the following properties for MySQL, replacing placeholder values as needed: `spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name`, `spring.datasource.username=your_username`, `spring.datasource.password=your_password`, `spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver`. Also, add `spring.jpa.hibernate.ddl-auto=update` to allow Hibernate to manage the schema.
+
+## 3. Change NewsArticle Primary Key to UUID [pending]
+### Dependencies: None
+### Description: Modify the `NewsArticle` entity to use a UUID for its primary key instead of a Long.
+### Details:
+In the `src/main/java/com/example/api/model/NewsArticle.java` file, change the type of the `id` field from `Long` to `java.util.UUID`. Update the `@GeneratedValue` annotation from `strategy = GenerationType.IDENTITY` to `strategy = GenerationType.UUID` to automatically generate UUIDs for new entities.
+
+## 4. Add Author and Publication Date Fields to NewsArticle Entity [pending]
+### Dependencies: None
+### Description: Enhance the `NewsArticle` entity by adding the `author` and `publicationDate` fields as specified in the requirements.
+### Details:
+In `src/main/java/com/example/api/model/NewsArticle.java`, add two new private fields: `private String author;` and `private java.time.LocalDate publicationDate;`. Generate the corresponding getter and setter methods for these new fields.
+
+## 5. Implement Automatic Timestamps in NewsArticle Entity [pending]
+### Dependencies: None
+### Description: Add `createdAt` and `updatedAt` fields to the `NewsArticle` entity and use Hibernate annotations for automatic timestamping.
+### Details:
+In `src/main/java/com/example/api/model/NewsArticle.java`, add two new private fields: `private java.time.Instant createdAt;` and `private java.time.Instant updatedAt;`. Annotate the `createdAt` field with `@CreationTimestamp` (from `org.hibernate.annotations`) and the `updatedAt` field with `@UpdateTimestamp`. These fields should be non-updatable from the client side, so you can make the columns non-updatable in the `@Column` annotation if desired (e.g., `@Column(updatable = false)` for `createdAt`).
+

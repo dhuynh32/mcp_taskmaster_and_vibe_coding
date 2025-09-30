@@ -1,0 +1,19 @@
+# Task ID: 12
+# Title: Initialize Project with Spring Boot
+# Status: pending
+# Dependencies: None
+# Priority: high
+# Description: Generate and configure the initial Spring Boot project, including core dependencies, package structure, environment profiles, and foundational DTOs.
+# Details:
+1. **Project Generation**: Use Spring Initializr (start.spring.io) to generate a new Maven project with Java and the latest stable Spring Boot version. Include the following dependencies: Spring Web, Spring Data JPA, MySQL Driver, Lombok, Validation, Spring Boot DevTools, SpringDoc OpenAPI UI, and Spring Boot Actuator.
+2. **Project Structure**: Organize the codebase using a package-by-feature approach. For the 'news' feature, create a primary package `com.example.newsapi`, which will contain sub-packages for `controller`, `service`, `repository`, `entity`, and `dto`.
+3. **Configuration**: Create an `application.yml` file in `src/main/resources`. Configure a `dev` profile to use an H2 in-memory database for local development (`spring.datasource.url=jdbc:h2:mem:testdb`, `spring.jpa.hibernate.ddl-auto=update`). Configure a `prod` profile with placeholders for MySQL connection details (`spring.datasource.url=${DB_URL}`, `spring.jpa.hibernate.ddl-auto=validate`). Set `dev` as the default active profile.
+4. **DTO Definition**: Create initial Data Transfer Objects (DTOs) to decouple the API layer from the persistence layer. Define a `NewsArticleRequest` DTO with fields for creating/updating an article, annotated with Jakarta Validation constraints (e.g., `@NotBlank`). Define a `NewsArticleResponse` DTO to specify the data returned by the API, avoiding direct exposure of the JPA entity.
+
+# Test Strategy:
+1. Run `mvn clean install` to confirm the project compiles and all dependencies are resolved without errors.
+2. Start the application using `mvn spring-boot:run`. Verify that the application starts successfully on the embedded server.
+3. Access the Spring Boot Actuator health endpoint at `http://localhost:8080/actuator/health` and confirm the status is `UP`.
+4. Access the SpringDoc OpenAPI UI at `http://localhost:8080/swagger-ui.html` to ensure it loads correctly.
+5. Review the project's directory structure to ensure it follows the specified package-by-feature organization.
+6. Inspect the `application.yml` file to verify that both `dev` and `prod` profiles are correctly defined and that `dev` is the default.

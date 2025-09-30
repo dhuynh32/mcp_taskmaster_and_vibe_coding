@@ -1,0 +1,11 @@
+# Task ID: 4
+# Title: Implement Basic List Articles Endpoint (GET /api/v1/news)
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Create the initial version of the endpoint to retrieve a list of all news articles. This will serve as the base for adding pagination and sorting.
+# Details:
+Based on the existing skeleton `NewsArticleController`, fully implement the method mapped to `GET /api/v1/news`. This method will call the service to fetch all articles from the repository and return them as a JSON array with a 200 OK status.
+
+# Test Strategy:
+Populate the test database with several articles. Send a GET request to the endpoint and assert that the response is 200 and the returned JSON array contains all the created articles.

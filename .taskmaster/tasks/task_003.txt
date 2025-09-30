@@ -1,0 +1,11 @@
+# Task ID: 3
+# Title: Implement Retrieve Single Article Endpoint (GET /api/v1/news/{id})
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Create the API endpoint to fetch a single news article by its unique identifier.
+# Details:
+In `NewsArticleController`, add a method mapped to `GET /api/v1/news/{id}` that accepts a UUID as a path variable. The service layer will use the repository to find the article. If found, return the article object with a 200 OK status. If not found, it should result in a 404 Not Found status.
+
+# Test Strategy:
+Create an article in the test database. Send a GET request using its ID and assert the response is 200 and the body matches the article. Send another GET request with a non-existent ID and assert the response is 404.

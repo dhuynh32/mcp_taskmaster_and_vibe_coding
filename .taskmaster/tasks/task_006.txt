@@ -1,0 +1,11 @@
+# Task ID: 6
+# Title: Implement Update Article Endpoint (PUT /api/v1/news/{id})
+# Status: pending
+# Dependencies: 1
+# Priority: medium
+# Description: Create the API endpoint to modify an existing news article.
+# Details:
+Implement a method in `NewsArticleController` mapped to `PUT /api/v1/news/{id}`. It will take the article ID from the path and the updated article data from the request body. The service logic should retrieve the existing article, update its fields, automatically update the `updatedAt` timestamp, and save it. Return the updated article.
+
+# Test Strategy:
+Create an article, then send a PUT request with updated data. Verify the response is 200 and contains the updated data. Fetch the article again to confirm persistence. Test updating a non-existent article to ensure a 404 is returned.

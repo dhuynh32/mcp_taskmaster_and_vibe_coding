@@ -1,0 +1,11 @@
+# Task ID: 8
+# Title: Implement Global Exception Handling
+# Status: pending
+# Dependencies: 3, 6, 7
+# Priority: medium
+# Description: Implement a centralized exception handler to ensure consistent and informative error responses across the API.
+# Details:
+Create a `@ControllerAdvice` class to handle common exceptions. Implement specific handlers (`@ExceptionHandler`) for `ResourceNotFoundException`, validation exceptions (`MethodArgumentNotValidException`), and a general handler for any other server errors. Responses should be a standardized JSON object with fields like `timestamp`, `status`, `error`, and `message`.
+
+# Test Strategy:
+Manually trigger different error conditions in integration tests. For example, request an entity that doesn't exist and verify the 404 response format. Send a POST request with missing required fields and verify the 400 response format.

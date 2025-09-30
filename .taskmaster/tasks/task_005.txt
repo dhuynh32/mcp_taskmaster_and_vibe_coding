@@ -1,0 +1,11 @@
+# Task ID: 5
+# Title: Add Pagination and Sorting to List Endpoint
+# Status: pending
+# Dependencies: 4
+# Priority: medium
+# Description: Enhance the `GET /api/v1/news` endpoint to support pagination and sorting as specified in the PRD.
+# Details:
+Modify the list articles endpoint to accept `page`, `pageSize`, and `sortBy` query parameters. Use Spring Data's `Pageable` interface in the controller and repository. The `sortBy` parameter should handle field names and direction (e.g., 'publicationDate:desc'). The response should be a `Page` object or a custom DTO containing the list of articles for the current page and pagination metadata (totalPages, totalElements, etc.).
+
+# Test Strategy:
+Test pagination by requesting different pages and sizes, asserting the correct subset of data is returned. Test sorting by requesting sorting on `title` and `publicationDate` in both `asc` and `desc` order and verifying the order of the results.

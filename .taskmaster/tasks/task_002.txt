@@ -1,0 +1,11 @@
+# Task ID: 2
+# Title: Implement Create News Article Endpoint (POST /api/v1/news)
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Create the API endpoint for adding a new news article to the system. This corresponds to the 'Create' part of the CRUD requirements.
+# Details:
+Implement a method in `NewsArticleController` mapped to `POST /api/v1/news`. This method will accept a JSON representation of a new article in the request body. The corresponding service layer logic in `NewsArticleService` will handle the persistence of the new entity using `NewsArticleRepository`. The endpoint should return the newly created article with a `201 Created` status.
+
+# Test Strategy:
+Write an integration test that sends a POST request with a valid article payload. Assert that the response status is 201 and the response body contains the created article's data, including a generated ID and timestamps. Test with an invalid payload to ensure a 400 Bad Request is returned.

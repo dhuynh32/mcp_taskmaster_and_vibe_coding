@@ -1,0 +1,11 @@
+# Task ID: 9
+# Title: Configure and Refine OpenAPI (Swagger) Documentation
+# Status: pending
+# Dependencies: 2, 3, 5, 6, 7
+# Priority: low
+# Description: Set up and annotate the controllers to generate clear and interactive API documentation using SpringDoc/Swagger.
+# Details:
+The `springdoc-openapi-ui` dependency is already present. Add `@Operation`, `@ApiResponse`, and `@Parameter` annotations to all methods in `NewsArticleController` to describe what each endpoint does, its parameters, and possible responses. Configure global API info like title and version. Verify the documentation is accessible and accurate at `/swagger-ui.html`.
+
+# Test Strategy:
+Start the application and navigate to the Swagger UI URL. Review the generated documentation for each endpoint. Check for clarity, completeness, and correctness of descriptions, parameters, and example schemas.
